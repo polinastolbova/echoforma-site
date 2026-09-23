@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>EchoForma — Generative Soundscapes</title>
+
+<meta name="description"
+content="EchoForma develops generative soundscapes for museums, exhibitions and architectural spaces.">
+
+<style>
+
+:root{
+
+  --bg:#f5f1eb;
+  --card:rgba(255,255,255,.45);
+
+  --text:#414b54;
+  --muted:#7f868b;
+
+  --sea:#a8c4c1;
+  --sand:#e4aa92;
+
+  --line:#e2dad2;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+
+  font-family:
+  system-ui,
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  sans-serif;
+
+  background:
+
+    radial-gradient(
+      circle at 82% 12%,
+      rgba(168,196,193,.12),
+      transparent 32%
+    ),
+
+    radial-gradient(
+      circle at 18% 88%,
+      rgba(228,170,146,.08),
+      transparent 28%
+    ),
+
+    #f5f1eb;
+
+  color:var(--text);
+
+  line-height:1.65;
+  overflow-x:hidden;
+}
+
+/* background waves */
+
+.background-waves{
+
+  position:fixed;
+  inset:0;
+
+  z-index:-1;
+
+  pointer-events:none;
+
+  opacity:.18;
+}
+
+.background-waves svg{
+
+  width:100%;
+  height:100%;
+}
+
+/* layout */
+
+.container{
+
+  width:min(1040px,92%);
+  margin:auto;
+}
+
+/* header */
+
+header{
+
+  position:sticky;
+  top:0;
+
+  backdrop-filter:blur(14px);
+
+  background:rgba(245,241,235,.88);
+
+  border-bottom:1px solid var(--line);
+
+  z-index:20;
+}
+
+.header-inner{
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:18px 0;
+}
+
+.logo{
+
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.logo svg{
+
+  width:52px;
+  height:auto;
+}
+
+.logo-text{
+
+  font-size:2rem;
+  font-weight:500;
+}
+
+nav{
+
+  display:flex;
+  gap:28px;
+}
+
+nav a{
+
+  color:var(--muted);
+  text-decoration:none;
+  transition:.2s;
+}
+
+nav a:hover{
+
+  color:var(--text);
+}
+
+/* hero */
+
+.hero{
+
+  padding:85px 0 60px;
+}
+
+.hero h1{
+
+  font-size:clamp(2.8rem,7vw,4.3rem);
+
+  line-height:1.05;
+
+  font-weight:500;
+
+  max-width:760px;
+
+  margin-bottom:24px;
+}
+
+.hero p{
+
+  max-width:760px;
+
+  color:var(--muted);
+
+  font-size:1.15rem;
+}
+
+/* sections */
+
+section{
+
+  padding:50px 0;
+}
+
+.section-title{
+
+  font-size:.76rem;
+
+  color:var(--muted);
+
+  letter-spacing:3px;
+
+  text-transform:uppercase;
+
+  margin-bottom:14px;
+}
+
+.section-heading{
+
+  font-size:2rem;
+
+  margin-bottom:28px;
+
+  font-weight:500;
+}
+
+/* projects */
+
+.projects-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(230px,1fr));
+
+  gap:18px;
+}
+
+.project-card{
+
+  display:block;
+
+  text-decoration:none;
+
+  color:var(--text);
+
+  background:var(--card);
+
+  border:1px solid var(--line);
+
+  border-radius:30px;
+
+  padding:28px;
+
+  min-height:230px;
+
+  backdrop-filter:blur(10px);
+
+  transition:.25s ease;
+}
+
+.project-card:hover{
+
+  transform:translateY(-5px);
+
+  border-color:var(--sea);
+
+  background:white;
+
+  box-shadow:
+  0 18px 40px rgba(0,0,0,.05);
+}
+
+.project-card h3{
+
+  margin-bottom:18px;
+
+  font-size:1.35rem;
+
+  font-weight:600;
+}
+
+.project-card p{
+
+  color:var(--muted);
+}
+
+/* services */
+
+.services{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(220px,1fr));
+
+  gap:14px;
+}
+
+.service{
+
+  background:var(--card);
+
+  border:1px solid var(--line);
+
+  border-radius:24px;
+
+  padding:22px;
+
+  backdrop-filter:blur(10px);
+}
+
+.service h3{
+
+  margin-bottom:10px;
+
+  font-size:1rem;
+}
+
+.service p{
+
+  color:var(--muted);
+}
+
+/* contact */
+
+.contact{
+
+  background:var(--card);
+
+  border:1px solid var(--line);
+
+  border-radius:28px;
+
+  padding:28px;
+
+  backdrop-filter:blur(10px);
+}
+
+.contact p{
+
+  color:var(--muted);
+}
+
+.contact-items{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:10px;
+
+  margin-top:18px;
+}
+
+.contact-item{
+
+  border:1px solid var(--line);
+
+  border-radius:999px;
+
+  padding:10px 16px;
+
+  color:var(--muted);
+}
+
+.contact-item a{
+
+  text-decoration:none;
+}
+
+/* footer */
+
+footer{
+
+  padding:45px 0;
+
+  text-align:center;
+
+  color:var(--muted);
+
+  font-size:.92rem;
+}
+
+@media(max-width:760px){
+
+  nav{
+    display:none;
+  }
+
+  .logo-text{
+    font-size:1.6rem;
+  }
+
+  .hero{
+    padding-top:60px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="background-waves">
+
+<svg viewBox="0 0 1600 1200" preserveAspectRatio="none">
+
+<path
+d="M0 250 C300 80 600 100 850 250 C1100 400 1300 350 1600 150"
+stroke="#a8c4c1"
+stroke-width="2"
+fill="none"/>
+
+<path
+d="M0 450 C300 280 600 300 850 450 C1100 600 1300 550 1600 350"
+stroke="#e4aa92"
+stroke-width="2"
+fill="none"/>
+
+<path
+d="M0 700 C300 530 600 550 850 700 C1100 850 1300 800 1600 600"
+stroke="#a8c4c1"
+stroke-width="2"
+fill="none"/>
+
+</svg>
+
+</div>
+
+<header>
+
+<div class="container header-inner">
+
+<div class="logo">
+
+<svg viewBox="0 0 120 90">
+
+<path
+d="M15 20 C35 0 55 0 75 20 C90 35 105 35 115 15"
+stroke="#A8C4C1"
+stroke-width="10"
+fill="none"
+stroke-linecap="round"/>
+
+<path
+d="M15 45 C35 25 55 25 75 45 C90 60 105 60 115 40"
+stroke="#E4AA92"
+stroke-width="10"
+fill="none"
+stroke-linecap="round"/>
+
+<path
+d="M15 70 C35 50 55 50 75 70 C90 85 105 85 115 65"
+stroke="#A8C4C1"
+stroke-width="10"
+fill="none"
+stroke-linecap="round"/>
+
+</svg>
+
+<div class="logo-text">
+EchoForma
+</div>
+
+</div>
+
+<nav>
+
+#projectsProjects</a>
+
+#servicesServices</a>
+
+#contactContact</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<main>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>
+Generative Soundscapes<br>
+for Museums & Spaces
+</h1>
+
+<p>
+
+EchoForma develops evolving audio environments
+for museums, exhibitions, installations and
+architectural spaces.
+
+Combining generative composition, spatial audio
+and exhibition design, each project becomes
+a living acoustic layer of place and narrative.
+
+</p>
+
+</div>
+
+</section>
+
+<section id="projects">
+
+<div class="container">
+
+<div class="section-title">
+Selected Work
+</div>
+
+<h2 class="section-heading">
+Soundscapes & Research
+</h2>
+
+<div class="projects-grid">
+
+<a class="project-card"
+href="https://youtube.com/playlist?list=PLT4FqChDZLGeIpPWFKnuAYkGn1hmWWpE5&si=nP4h-wTW2Jw0UCen"
+target="_blank">
+
+<h3>Patagonia</h3>
+
+<p>
+Large-scale environmental soundscape inspired
+by wind, distance, clouds and geological formations.
+</p>
+
+</a>
+
+<a class="project-card"
+href="https://youtube.com/playlist?list=PLUvrOYZCvuT0&si=VFXSdi9z-XMY1HwG"
+target="_blank">
+
+<h3>Van Gogh</h3>
+
+<p>
+Generative audio interpretations of paintings
+based on colour, composition and visual rhythm.
+</p>
+
+</a>
+
+<a class="project-card"
+href="https://youtube.com/playlist?list=PLT4FqChDZLGeBeeHIuAlMcYZLMKxEKX_9&si=0_u8eBPM6fdDxWsb"
+target="_blank">
+
+<h3>Dostoevsky Museum</h3>
+
+<p>
+Architectural sound environments supporting
+narrative museum experiences.
+</p>
+
+</a>
+
+<a class="project-card"
+href="https://youtube.com/playlist?list=PLT4FqChDZLGcFRr5qrm7MlUtM0OiJBgv2&si=SndAZbT31vGhgHRP"
+target="_blank">
+
+<h3>AlUla</h3>
+
+<p>
+Desert soundscape project translating landscape,
+stone and atmosphere into evolving sonic structures.
+</p>
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="services">
+
+<div class="container">
+
+<div class="section-title">
+Services
+</div>
+
+<h2 class="section-heading">
+What We Create
+</h2>
+
+<div class="services">
+
+<div class="service">
+
+<h3>Generative Soundscapes</h3>
+
+<p>
+Non-looping audio environments
+for museums, exhibitions and installations.
+</p>
+
+</div>
+
+<div class="service">
+
+<h3>QR Audio Experiences</h3>
+
+<p>
+Artwork interpretation through
+visitor mobile devices.
+</p>
+
+</div>
+
+<div class="service">
+
+<h3>Spatial Audio Concepts</h3>
+
+<p>
+Creative and technical concepts
+for immersive environments.
+</p>
+
+</div>
+
+<div class="service">
+
+<h3>Research Collaboration</h3>
+
+<p>
+Projects connecting sound,
+culture and technology.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<div class="container">
+
+<div class="section-title">
+Contact
+</div>
+
+<div class="contact">
+
+<p>
+
+EchoForma collaborates with museums,
+galleries, curators, architects,
+media-art studios and cultural institutions worldwide.
+
+</p>
+
+<div class="contact-items">
+
+<div class="contact-item">
+info@echoforma.com
+</div>
+
+<div class="contact-item">
+projects@echoforma.com
+</div>
+
+<div class="contact-item">
+support@echoforma.com
+</div>
+
+<div class="contact-item">
+
+<a
+href="https://www.youtube.com/@EchoForma_Soundscape"
+target="_blank">
+
+YouTube
+
+</a>
+
+</div>
+
+<div class="contact-item">
+
+<a
+href="https://www.instagram.com/echo_forma/"
+target="_blank">
+
+Instagram
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+
+EchoForma · Generative Soundscapes for Museums, Installations & Architecture
+
+</footer>
+
+</body>
+</html>
+
